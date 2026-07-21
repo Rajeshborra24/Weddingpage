@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sravani & Pavan Wedding Invitation — 28th August 2026</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Official Wedding Invitation of Chi.La.Sa. Sravani and Chi. Pavan Ravi Kalyan. Join us on Friday, 28th August 2026 at Green View International Function Hall, Kalla Mandalam.">
+    <meta name="keywords" content="Sravani, Pavan, Sravani Pavan Wedding, Andhra Wedding, Telugu Marriage Invitation, Green View Function Hall Kalla Mandalam">
+    <meta name="author" content="Borra & Kandula Families">
+    
+    <!-- Open Graph for Social Sharing (WhatsApp, Facebook) -->
+    <meta property="og:title" content="💍 Sravani & Pavan Wedding Invitation | 28.08.2026">
+    <meta property="og:description" content="We cordially invite you to celebrate the holy matrimony of Sravani & Pavan Ravi Kalyan at Green View Function Hall, Kalla Mandalam.">
+    <meta property="og:image" content="god.jpg">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon (SVG Wedding Rings / Heart) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💍</text></svg>">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700;800&family=Great+Vibes&family=Marcellus&family=Noto+Serif+Telugu:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Particle Canvas Background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Floating Audio & Language Controls -->
+    <div class="floating-controls">
+        <button id="lang-toggle-btn" title="Toggle Language">
+            <span id="lang-text">తెలుగు</span>
+        </button>
+        <button id="music-toggle-btn" title="Play / Pause Music">
+            <span id="music-icon">🎵</span>
+        </button>
+    </div>
+
+    <!-- Background Audio (Autoplay Enabled - MP3 format for local file compatibility) -->
+    <audio id="wedding-audio" autoplay loop preload="auto" playsinline>
+        <source src="wedding-music.mp3" type="audio/mpeg">
+        <source src="wedding-music.webm" type="audio/webm">
+    </audio>
+
+    <!-- Header / Navigation -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="#home">S <span>❤</span> P</a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home" data-en="Home" data-te="ప్రారంభం">Home</a></li>
+                <li><a href="#blessings" data-en="Blessings" data-te="దీవెనలు">Blessings</a></li>
+                <li><a href="#couple" data-en="The Couple" data-te="వధూవరులు">The Couple</a></li>
+                <li><a href="#events" data-en="Events" data-te="వేడుకలు">Events</a></li>
+                <li><a href="#family" data-en="Family" data-te="కుటుంబం">Family</a></li>
+                <li><a href="#venue" data-en="Venue" data-te="వేదిక">Venue</a></li>
+                <li><a href="#greetings" data-en="Invitation" data-te="ఆహ్వానం">Invitation</a></li>
+                <li><a href="#gallery" data-en="Gallery" data-te="చిత్రాలు">Gallery</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+
+    <!-- Section 1: Hero -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <div class="devotional-header">
+                <div class="om-symbol">ॐ</div>
+                <p class="invocation-te" data-en="Om Namo Venkatesaya" data-te="ఓం నమో వేంకటేశాయ">ఓం నమో వేంకటేశాయ</p>
+                <p class="invocation-en">Sri Rastu · Subhamastu · Avighnamastu</p>
+            </div>
+
+            <div class="divider-gold-line"></div>
+
+            <h3 class="subtitle" data-en="Join us to celebrate the auspicious union of" data-te="కల్యాణ మహోత్సవానికి సహృదయంతో ఆహ్వానించుచున్నాము">
+                Join us to celebrate the auspicious union of
+            </h3>
+            
+            <h1 class="names">
+                <span class="bride-name" data-en="Sravani" data-te="శ్రావణి">Sravani</span>
+                <span class="ampersand">&amp;</span>
+                <span class="groom-name" data-en="Pavan Kalyan" data-te="పవన్ కళ్యాణ్">Pavan Kalyan</span>
+            </h1>
+
+            <p class="date">28 . 08 . 2026</p>
+
+            <!-- Countdown Timer -->
+            <div id="countdown" class="countdown-timer">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <p data-en="Days" data-te="రోజులు">Days</p>
+                </div>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <p data-en="Hours" data-te="గంటలు">Hours</p>
+                </div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <p data-en="Minutes" data-te="నిమిషాలు">Minutes</p>
+                </div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <p data-en="Seconds" data-te="సెకన్లు">Seconds</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Divine Blessings -->
+    <section id="blessings" class="blessings-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Divine Invocations" data-te="దైవానుగ్రహం & ఆశీస్సులు">Divine Invocations</h2>
+            
+            <div class="blessing-card">
+                <div class="god-image-wrapper">
+                    <img src="god.jpg" alt="Lord Sri Venkateswara Swamy" class="god-image">
+                </div>
+                
+                <div class="blessing-text">
+                    <h3 data-en="With the Divine Blessings of Lord Sri Venkateswara Swamy" data-te="శ్రీ వేంకటేశ్వర స్వామివారి దివ్య ఆశీస్సులతో">
+                        With the Divine Blessings of Lord Sri Venkateswara Swamy
+                    </h3>
+                    <p class="telugu-sloka">
+                        స్వస్తిశ్రీ చాంద్రమాన శ్రీ పరాభవ నామ సంవత్సర శ్రావణ శుద్ధ పూర్ణిమ తత్కాల పాడ్యమి శుక్రవారము, తా. 28-08-2026, రాత్రి గం. 10-08 నిమిషాలకు, శతభిషా నక్షత్రయుక్త మేష లగ్నము నందు...
+                    </p>
+                    <div class="elders-blessings">
+                        <p class="blessings-header" data-en="Elder's Blessings:" data-te="దివ్య ఆశీస్సులతో దంపతులు:">Elder&apos;s Blessings:</p>
+                        <ul class="blessings-list">
+                            <li>✦ Sri Borra Chintanna &amp; Srimathi Sathyamma (దంపతులు)</li>
+                            <li>✦ Sri Borra Venkateswarlu &amp; Srimathi Raghavamma (దంపతులు)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: The Couple (Parent Corrected) -->
+    <section id="couple" class="couple-section">
+        <div class="container">
+            <h2 class="section-title" data-en="The Couple" data-te="వధూవరులు">The Couple</h2>
+            <div class="couple-container">
+                
+                <!-- Bride Card (Sravani - Daughter of Sri Borra Ramakrishna & Smt. Borra Venkata Lakshmi) -->
+                <div class="person">
+                    <div class="portrait-placeholder bride"></div>
+                    <h3 class="person-name" data-en="Sravani" data-te="శ్రావణి">Sravani</h3>
+                    <p class="relation-text" data-en="Daughter of Sri Borra Ramakrishna & Smt. Borra Venkata Lakshmi (Bride's Family)" data-te="కుమార్తె: శ్రీ బొర్రా రామకృష్ణ & శ్రీమతి బొర్రా వేంకట లక్ష్మి">
+                        Daughter of Sri Borra Ramakrishna &amp;<br>Smt. Borra Venkata Lakshmi<br><em>(Bride&apos;s Family)</em>
+                    </p>
+                </div>
+
+                <div class="divider">
+                    <img src="https://img.icons8.com/ios-filled/50/e6b366/wedding-rings.png" alt="Rings">
+                </div>
+
+                <!-- Groom Card (Pavan Kalyan - Son of Sri Kandula Prakambaram & Smt. Kandula Seethamahalakshmi) -->
+                <div class="person">
+                    <div class="portrait-placeholder groom"></div>
+                    <h3 class="person-name" data-en="Pavan Ravi Kalyan" data-te="పవన్ రవి కళ్యాణ్">Pavan Ravi Kalyan</h3>
+                    <p class="relation-text" data-en="Son of Sri Kandula Prakambaram & Smt. Kandula Seethamahalakshmi (Groom's Family)" data-te="కుమారుడు: శ్రీ కందుల ప్రకంబరం & శ్రీమతి కందుల సీతామహాలక్ష్మి">
+                        Son of Sri Kandula Prakambaram &amp;<br>Smt. Kandula Seethamahalakshmi<br><em>(Groom&apos;s Family)</em>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Auspicious Events (Pure Image Cards as requested) -->
+    <section id="events" class="events-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Auspicious Events" data-te="శుభ కార్యక్రమాలు">Auspicious Events</h2>
+            <div class="events-grid">
+                <div class="event-card" id="muhurtham-card" title="Wedding Sumuhurtham">
+                    <!-- Direct background image used as card -->
+                </div>
+                <div class="event-card" id="dinner-card" title="Reception & Vindu">
+                    <!-- Direct background image used as card -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Our Families -->
+    <section id="family" class="family-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Our Beloved Families" data-te="కుటుంబ ఆహ్వానకర్తలు">Our Beloved Families</h2>
+            
+            <div class="family-grid">
+                <!-- Bride's Family (Borra Vari) -->
+                <div class="family-card">
+                    <h3 class="family-card-title">
+                        <span data-en="Bride's Family" data-te="వధువు కుటుంబం">Bride&apos;s Family</span>
+                        <span class="sub-tag" data-en="(Borra Vari)" data-te="(బొర్రా వారి)">(Borra Vari)</span>
+                    </h3>
+                    <div class="family-members">
+                        <p><strong>Father:</strong> Sri Borra Ramakrishna</p>
+                        <p><strong>Mother:</strong> Smt. Borra Venkata Lakshmi</p>
+                    </div>
+                </div>
+
+                <!-- Groom's Family (Kandula Vari) -->
+                <div class="family-card">
+                    <h3 class="family-card-title">
+                        <span data-en="Groom's Family" data-te="వరుడి కుటుంబం">Groom&apos;s Family</span>
+                        <span class="sub-tag" data-en="(Kandula Vari)" data-te="(కందుల వారి)">(Kandula Vari)</span>
+                    </h3>
+                    <div class="family-members">
+                        <p><strong>Father:</strong> Sri Kandula Prakambaram</p>
+                        <p><strong>Mother:</strong> Smt. Kandula Seethamahalakshmi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Venue & Map (Updated Google Maps Link) -->
+    <section id="venue" class="venue-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Wedding Venue" data-te="వివాహ వేదిక">Wedding Venue</h2>
+            
+            <div class="venue-wrapper">
+                <div class="venue-details">
+                    <h3 data-en="Green View International Function Hall" data-te="గ్రీన్ వ్యూ ఇంటర్నేషనల్ ఫంక్షన్ హాల్">Green View International Function Hall</h3>
+                    <p class="venue-address" data-en="Seesali Road, Kalla Mandalam, West Godavari District, Andhra Pradesh" data-te="సీసాలి రోడ్, కళ్ళ మండలం, పశ్చిమ గోదావరి జిల్లా, ఆంధ్రప్రదేశ్">
+                        Seesali Road, Kalla Mandalam, West Godavari District, Andhra Pradesh
+                    </p>
+                    <div class="venue-actions">
+                        <a href="https://maps.app.goo.gl/8aScrndzmMv4WCYa6" target="_blank" rel="noopener" class="btn-primary">
+                            📍 <span data-en="Open Google Maps Directions" data-te="మ్యాప్స్ దిశలను తెరవండి">Open Google Maps Directions</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="venue-map-frame">
+                    <iframe src="https://maps.google.com/maps?q=Kalla+Mandalam+West+Godavari+Andhra+Pradesh&output=embed&z=13" width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy" title="Venue Map"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Heartfelt Invite Greetings -->
+    <section id="greetings" class="greetings-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Heartfelt Invitation" data-te="హృదయపూర్వక ఆహ్వానం">Heartfelt Invitation</h2>
+            
+            <div class="greetings-card">
+                <div class="greetings-icon">🌸</div>
+                <h3 data-en="Warm Welcome to Family, Relatives & Friends" data-te="బంధుమిత్రులకు సాదర ఆహ్వానం">
+                    Warm Welcome to Family, Relatives &amp; Friends
+                </h3>
+                <p class="greetings-body-en" data-en="As we embark on this sacred journey of togetherness, your presence, blessings, and warm wishes will mean the world to us and our families. We cordially invite you and your family to join us on this blissful occasion and bless the young couple with peace, joy, and prosperity." data-te="మా శ్రావణి మరియు పవన్ ల వివాహ మహోత్సవ శుభవేళ, మీ సముచిత సమక్షం, అమూల్యమైన దీవెనలు మరియు శుభాకాంక్షలు మాకు ఎంతో మిన్న. ఈ పవిత్రమైన వేడుకకు విచ్చేసి, నూతన దంపతులను ఆశీర్వదించవలసిందిగా కోరుచున్నాము.">
+                    As we embark on this sacred journey of togetherness, your presence, blessings, and warm wishes will mean the world to us and our families. We cordially invite you and your family to join us on this blissful occasion and bless the young couple with peace, joy, and prosperity.
+                </p>
+                <div class="greetings-signature">
+                    <p data-en="Solicited by: Borra & Kandula Families" data-te="ఆహ్వానించువారు: బొర్రా మరియు కందుల కుటుంబీకులు">
+                        Solicited by: Borra &amp; Kandula Families
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Gallery (Coming Soon Placeholder) -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Wedding Moments" data-te="వివాహ చిత్రాలు">Wedding Moments</h2>
+            
+            <div class="coming-soon-card">
+                <div class="coming-soon-icon">✨ 📸 ✨</div>
+                <h3 data-en="Wedding Gallery Coming Soon!" data-te="వివాహ చిత్రాలు త్వరలో రాబోతున్నాయి!">Wedding Gallery Coming Soon!</h3>
+                <p data-en="Cherished wedding photos and golden moments will be uploaded here right after the marriage ceremonies." data-te="వివాహ మహోత్సవం ముగిసిన వెంటనే మనోహరమైన చిత్రాలు మరియు మధురమైన జ్ఞాపకాలు ఇక్కడ పొందుపరచబడతాయి.">
+                    Cherished wedding photos and golden moments will be uploaded here right after the marriage ceremonies.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-sloka">
+            <p>శ్రీ రస్తు ॥ శుభమస్తు ॥ అవిఘ్నమస్తు</p>
+        </div>
+        <p class="footer-names">Sravani ❤ Pavan Kalyan</p>
+        <p class="copyright">&copy; 2026 Sravani &amp; Pavan Wedding Invitation. All rights reserved.</p>
+    </footer>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>

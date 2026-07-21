@@ -1,0 +1,794 @@
+/* Variables */
+:root {
+    --text-main: #fdfbf7;
+    --text-gold: #e6b366;
+    --accent-gold: #e6b366;
+    --accent-maroon: #731c23;
+    --bg-main: #4a0e17;
+    --bg-darker: #2a050a;
+    --bg-card: rgba(42, 5, 10, 0.85);
+    --white: #ffffff;
+    --font-heading: 'Cinzel', serif;
+    --font-script: 'Great Vibes', cursive;
+    --font-body: 'Marcellus', 'Noto Serif Telugu', serif;
+}
+
+/* Reset & Global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-image: linear-gradient(rgba(42, 5, 10, 0.4), rgba(42, 5, 10, 0.4)), url('god.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    color: var(--text-gold);
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: var(--accent-gold);
+}
+
+/* Floating Controls */
+.floating-controls {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+}
+
+.floating-controls button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-gold);
+    background: var(--bg-darker);
+    color: var(--text-gold);
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.floating-controls button:hover {
+    transform: scale(1.1);
+}
+
+#lang-toggle-btn {
+    font-size: 0.75rem;
+    font-family: 'Noto Serif Telugu', serif;
+    font-weight: bold;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1050px;
+    padding: 0.75rem 2.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(253, 251, 247, 0.95);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+    transition: all 0.3s ease;
+    border-radius: 50px;
+    border: 1.5px solid var(--accent-gold);
+}
+
+.logo a {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--bg-main);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.logo a span {
+    color: var(--accent-gold);
+    font-size: 1.2rem;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--bg-main);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding: 0.2rem 0;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-gold);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--accent-maroon);
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.bar {
+    display: block;
+    width: 24px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease;
+    background-color: var(--bg-main);
+    border-radius: 2px;
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--white);
+    padding: 120px 1.5rem 60px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content {
+    animation: fadeIn 2s ease-in-out;
+}
+
+.devotional-header .om-symbol {
+    font-size: 3rem;
+    color: var(--text-gold);
+    text-shadow: 0 0 15px rgba(230, 179, 102, 0.7);
+}
+
+.invocation-te {
+    font-family: 'Noto Serif Telugu', serif;
+    color: var(--text-gold);
+    font-size: 1rem;
+}
+
+.invocation-en {
+    font-style: italic;
+    color: rgba(253, 251, 247, 0.8);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.divider-gold-line {
+    height: 1px;
+    width: 150px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+}
+
+.hero-content .subtitle {
+    font-size: 1.2rem;
+    font-family: var(--font-body);
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.hero-content .names {
+    font-family: var(--font-script);
+    font-size: 5rem;
+    color: var(--accent-gold);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.hero-content .names .ampersand {
+    font-size: 3.5rem;
+    color: var(--white);
+}
+
+.hero-content .date {
+    font-size: 1.8rem;
+    font-family: var(--font-heading);
+    letter-spacing: 5px;
+    border-top: 2px solid var(--accent-gold);
+    border-bottom: 2px solid var(--accent-gold);
+    display: inline-block;
+    padding: 10px 25px;
+    margin-bottom: 2rem;
+}
+
+/* Countdown Timer */
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.time-box {
+    background: linear-gradient(to right, #dca85b, #eac488, #dca85b);
+    border: 1px solid #734a1b;
+    border-radius: 6px;
+    padding: 1rem 1.5rem;
+    min-width: 100px;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.5);
+    color: #4a2e15;
+}
+
+.time-box span {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #3b1b0b;
+    display: block;
+    line-height: 1;
+}
+
+.time-box p {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #4a2e15;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.3rem;
+}
+
+/* Section 2: Blessings */
+.blessings-section {
+    padding: 6rem 0;
+}
+
+.blessing-card {
+    background: var(--bg-card);
+    border: 1.5px solid var(--accent-gold);
+    border-radius: 20px;
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2.5rem;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.god-image-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 3px solid var(--accent-gold);
+}
+
+.god-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+}
+
+.blessing-text h3 {
+    color: var(--text-gold);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.telugu-sloka {
+    font-family: 'Noto Serif Telugu', serif;
+    color: var(--text-main);
+    line-height: 1.8;
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--accent-gold);
+}
+
+.elders-blessings {
+    background: rgba(0,0,0,0.3);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(230, 179, 102, 0.3);
+}
+
+.blessings-header {
+    color: var(--text-gold);
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+}
+
+.blessings-list {
+    list-style: none;
+}
+
+/* Section 3: Couple Section */
+.couple-section {
+    padding: 6rem 0;
+}
+
+.couple-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+}
+
+.person {
+    text-align: center;
+    max-width: 320px;
+}
+
+/* Circular Portrait Frame (Desktop & Mobile) */
+.portrait-placeholder {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    border: 5px solid var(--accent-gold);
+    background-color: var(--bg-darker);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    background-size: cover;
+    background-position: center top;
+}
+
+.portrait-placeholder.bride {
+    background-image: url('bride-pic.jpeg');
+}
+
+.portrait-placeholder.groom {
+    background-image: url('groom-pic.jpeg');
+}
+
+.person h3.person-name {
+    font-size: 2.3rem;
+    color: var(--text-gold);
+    margin-bottom: 0.5rem;
+}
+
+.person .relation-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+.divider img {
+    width: 60px;
+    opacity: 0.8;
+}
+
+/* Section 4: Events Section (Pure Background Cards) */
+.events-section {
+    padding: 6rem 0;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.event-card {
+    background: #fdfbf7;
+    padding: 0;
+    border-radius: 15px;
+    text-align: center;
+    border: 3px solid var(--accent-gold);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.event-card:hover {
+    transform: translateY(-8px);
+}
+
+#muhurtham-card {
+    background-image: url('muhurtham-bg.jpeg');
+    background-size: cover;
+    background-position: center;
+    min-height: 380px;
+}
+
+#dinner-card {
+    background-image: url('dinner-bg.jpeg');
+    background-size: cover;
+    background-position: center;
+    min-height: 380px;
+}
+
+/* Section 5: Family */
+.family-section {
+    padding: 6rem 0;
+}
+
+.family-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+}
+
+.family-card {
+    background: var(--bg-card);
+    border: 1.5px solid var(--accent-gold);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.family-card-title {
+    color: var(--text-gold);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.family-card-title .sub-tag {
+    font-size: 1.15rem;
+    font-weight: normal;
+    color: var(--accent-gold);
+    font-style: italic;
+}
+
+.family-members p {
+    margin-bottom: 0.6rem;
+    font-size: 1.1rem;
+}
+
+/* Section 6: Venue */
+.venue-section {
+    padding: 6rem 0;
+}
+
+.venue-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    background: var(--bg-card);
+    border: 1.5px solid var(--accent-gold);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.venue-details h3 {
+    color: var(--text-gold);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.venue-address {
+    color: var(--text-main);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.btn-primary {
+    display: inline-block;
+    background: var(--accent-gold);
+    color: var(--bg-main);
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+.venue-map-frame {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--accent-gold);
+}
+
+/* Section 7: Heartfelt Greetings */
+.greetings-section {
+    padding: 6rem 0;
+}
+
+.greetings-card {
+    background: var(--bg-card);
+    border: 2px solid var(--accent-gold);
+    border-radius: 24px;
+    padding: 3.5rem 2.5rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+.greetings-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.greetings-card h3 {
+    color: var(--text-gold);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.greetings-body-en {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: var(--text-main);
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.greetings-signature p {
+    color: var(--accent-gold);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Section 8: Gallery (Coming Soon Card) */
+.gallery-section {
+    padding: 6rem 0;
+}
+
+.coming-soon-card {
+    background: var(--bg-card);
+    border: 2px dashed var(--accent-gold);
+    border-radius: 24px;
+    padding: 4rem 2rem;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.coming-soon-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.coming-soon-card h3 {
+    color: var(--text-gold);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.coming-soon-card p {
+    font-size: 1.1rem;
+    color: rgba(253, 251, 247, 0.85);
+    font-style: italic;
+}
+
+/* Footer */
+footer {
+    background-color: var(--bg-darker);
+    color: var(--text-gold);
+    text-align: center;
+    padding: 3.5rem 1.5rem;
+    border-top: 1px solid rgba(230, 179, 102, 0.3);
+}
+
+.footer-sloka {
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+}
+
+.footer-names {
+    font-family: var(--font-script);
+    font-size: 2.5rem;
+    color: var(--accent-gold);
+    margin-bottom: 0.5rem;
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: rgba(253, 251, 247, 0.5);
+    margin-top: 1.5rem;
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 MOBILE RESPONSIVE MEDIA QUERIES */
+@media (max-width: 768px) {
+    .navbar {
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.65rem 1.5rem;
+    }
+
+    .logo a {
+        font-size: 1.5rem;
+    }
+
+    .nav-links {
+        position: absolute;
+        right: -120%;
+        top: 65px;
+        flex-direction: column;
+        background: #fdfbf7;
+        border-radius: 20px;
+        width: 100%;
+        text-align: center;
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+        padding: 1.8rem 1rem;
+        border: 1.5px solid var(--accent-gold);
+        gap: 1.2rem;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .hero-section {
+        padding-top: 130px;
+    }
+
+    /* 1 & 4. Mobile Name Font Sizes Decreased */
+    .hero-content .names {
+        font-size: 2.8rem;
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+
+    .hero-content .names .ampersand {
+        font-size: 2rem;
+    }
+
+    .person h3.person-name {
+        font-size: 1.8rem;
+    }
+
+    .person .relation-text {
+        font-size: 0.95rem;
+    }
+
+    /* 4. Mobile Bride & Groom Old Circular Portrait Layout */
+    .portrait-placeholder {
+        width: 200px;
+        height: 200px;
+        border-width: 4px;
+        margin-bottom: 1rem;
+    }
+
+    .couple-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .divider {
+        margin: 0.5rem 0;
+        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .divider img {
+        width: 50px;
+        opacity: 0.85;
+    }
+
+    .blessing-card, .family-grid, .venue-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    #muhurtham-card, #dinner-card {
+        min-height: 250px;
+    }
+
+    .section-title {
+        font-size: 2.1rem;
+    }
+}
