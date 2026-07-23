@@ -36,54 +36,59 @@ if (langToggleBtn) {
     });
 }
 
-// Background Audio Autoplay with Mute / Unmute Toggle
+// Guaranteed Instant Audio Autoplay & Mute/Unmute Control
 const musicBtn = document.getElementById('music-toggle-btn');
 const musicIcon = document.getElementById('music-icon');
 const audioEl = document.getElementById('wedding-audio');
 
 if (musicBtn && audioEl) {
-    audioEl.volume = 0.85;
+    audioEl.volume = 0.9;
+    audioEl.muted = false;
 
-    function startAudio() {
+    function playAudioNow() {
+        if (!audioEl) return;
         audioEl.muted = false;
         const playPromise = audioEl.play();
         if (playPromise !== undefined) {
             playPromise.then(() => {
                 if (musicIcon) musicIcon.textContent = '🔊';
             }).catch(() => {
-                // If browser restricts unmuted autoplay, start playing muted & unmute on first click
-                audioEl.muted = true;
-                audioEl.play().then(() => {
-                    if (musicIcon) musicIcon.textContent = '🔊';
-                }).catch(err => console.log("Autoplay waiting for gesture:", err));
+                // If browser strict autoplay policy blocked unmuted sound initially, icon shows mute until gesture
+                if (musicIcon) musicIcon.textContent = '🔇';
             });
         }
     }
 
-    startAudio();
-    window.addEventListener('DOMContentLoaded', startAudio);
+    // Try playing unmuted instantly on load
+    playAudioNow();
+    window.addEventListener('DOMContentLoaded', playAudioNow);
+    window.addEventListener('load', playAudioNow);
 
-    // Unmute automatically on first interaction if initially muted by browser policy
-    const unmuteOnGesture = () => {
-        if (audioEl.muted) {
+    // Force play unmuted on ANY user gesture (touch, scroll, click, mousemove, keydown)
+    const enableAudioOnGesture = () => {
+        if (audioEl.paused || audioEl.muted) {
             audioEl.muted = false;
-            if (audioEl.paused) audioEl.play();
-            if (musicIcon) musicIcon.textContent = '🔊';
+            audioEl.play().then(() => {
+                if (musicIcon) musicIcon.textContent = '🔊';
+            }).catch(() => {});
         }
     };
-    ['click', 'pointerdown', 'touchstart'].forEach(evt => {
-        window.addEventListener(evt, unmuteOnGesture, { once: true, passive: true });
+
+    ['click', 'pointerdown', 'touchstart', 'touchend', 'scroll', 'mousemove', 'keydown'].forEach(evt => {
+        window.addEventListener(evt, enableAudioOnGesture, { passive: true });
     });
 
     // Mute / Unmute Toggle Button
     musicBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        if (audioEl.muted || audioEl.paused) {
+        if (audioEl.paused || audioEl.muted) {
             audioEl.muted = false;
-            if (audioEl.paused) audioEl.play();
-            if (musicIcon) musicIcon.textContent = '🔊';
+            audioEl.play().then(() => {
+                if (musicIcon) musicIcon.textContent = '🔊';
+            }).catch(err => console.log("Playback error:", err));
         } else {
             audioEl.muted = true;
+            audioEl.pause();
             if (musicIcon) musicIcon.textContent = '🔇';
         }
     });
