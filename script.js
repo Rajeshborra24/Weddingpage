@@ -36,7 +36,7 @@ if (langToggleBtn) {
     });
 }
 
-// Background Audio Mute / Unmute Controls (No Autoplay)
+// Background Audio Autoplay with Mute / Unmute Toggle
 const musicBtn = document.getElementById('music-toggle-btn');
 const musicIcon = document.getElementById('music-icon');
 const audioEl = document.getElementById('wedding-audio');
@@ -44,16 +44,46 @@ const audioEl = document.getElementById('wedding-audio');
 if (musicBtn && audioEl) {
     audioEl.volume = 0.85;
 
+    function startAudio() {
+        audioEl.muted = false;
+        const playPromise = audioEl.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                if (musicIcon) musicIcon.textContent = '🔊';
+            }).catch(() => {
+                // If browser restricts unmuted autoplay, start playing muted & unmute on first click
+                audioEl.muted = true;
+                audioEl.play().then(() => {
+                    if (musicIcon) musicIcon.textContent = '🔊';
+                }).catch(err => console.log("Autoplay waiting for gesture:", err));
+            });
+        }
+    }
+
+    startAudio();
+    window.addEventListener('DOMContentLoaded', startAudio);
+
+    // Unmute automatically on first interaction if initially muted by browser policy
+    const unmuteOnGesture = () => {
+        if (audioEl.muted) {
+            audioEl.muted = false;
+            if (audioEl.paused) audioEl.play();
+            if (musicIcon) musicIcon.textContent = '🔊';
+        }
+    };
+    ['click', 'pointerdown', 'touchstart'].forEach(evt => {
+        window.addEventListener(evt, unmuteOnGesture, { once: true, passive: true });
+    });
+
+    // Mute / Unmute Toggle Button
     musicBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        if (audioEl.paused || audioEl.muted) {
+        if (audioEl.muted || audioEl.paused) {
             audioEl.muted = false;
-            audioEl.play().then(() => {
-                if (musicIcon) musicIcon.textContent = '🔊';
-            }).catch(err => console.log("Playback error:", err));
+            if (audioEl.paused) audioEl.play();
+            if (musicIcon) musicIcon.textContent = '🔊';
         } else {
             audioEl.muted = true;
-            audioEl.pause();
             if (musicIcon) musicIcon.textContent = '🔇';
         }
     });
